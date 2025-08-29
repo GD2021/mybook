@@ -18,12 +18,31 @@ const usePintreeStore = create<PintreeState & PintreeActions>((set, get) => ({
   selectedCategoryTitle: '',
   currentItems: [],
   loadInitialData: () => {
-    const data = pintreeData as unknown as PintreeData;
-    const firstCategoryTitle = Object.keys(data)[0];
+    const processNode = (node: any, path: string, allData: PintreeData) => {
+      if (node.type === 'folder') {
+        const newPath = path ? `${path} / ${node.title}` : node.title;
+        if (node.children) {
+          const items: BookmarkItem[] = node.children.filter(
+            (child: any) => child.type === 'link',
+          );
+          if (items.length > 0) {
+            allData[newPath] = items;
+          }
+          node.children.forEach((child: any) =>
+            processNode(child, newPath, allData),
+          );
+        }
+      }
+    };
+
+    const allData: PintreeData = {};
+    pintreeData.forEach((rootNode: any) => processNode(rootNode, '', allData));
+
+    const firstCategoryTitle = Object.keys(allData)[0] || '';
     set({
-      allBookmarks: data,
+      allBookmarks: allData,
       selectedCategoryTitle: firstCategoryTitle,
-      currentItems: data[firstCategoryTitle] || [],
+      currentItems: allData[firstCategoryTitle] || [],
     });
   },
   selectCategory: (title: string) => {
