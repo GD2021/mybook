@@ -16,7 +16,7 @@ const BookmarkCard = ({ item }: BookmarkCardProps) => {
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+      className="block p-4 bg-card rounded-lg border border-border hover:shadow-lg transition-shadow duration-300"
     >
       <div className="flex items-center">
         <img
@@ -26,9 +26,9 @@ const BookmarkCard = ({ item }: BookmarkCardProps) => {
           onError={handleIconError}
         />
         <div>
-          <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
+          <h3 className="text-lg font-semibold text-card-foreground">{item.title}</h3>
           {item.description && (
-            <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+            <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
           )}
         </div>
       </div>

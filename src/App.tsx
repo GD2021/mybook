@@ -9,10 +9,10 @@ function App() {
 
   useEffect(() => {
     loadInitialData();
-  }, [loadInitialData]);
+  }, []);
 
   return (
-    <div className="flex h-screen bg-gray-50 text-gray-900">
+    <div className="flex h-screen bg-background text-foreground">
       <Sidebar />
       <MainContent />
     </div>

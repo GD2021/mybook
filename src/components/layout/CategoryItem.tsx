@@ -9,9 +9,9 @@ interface CategoryItemProps {
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ title, icon, isSelected, onClick }) => {
   const baseClasses =
-    'flex items-center w-full h-10 px-4 rounded-lg cursor-pointer transition-colors duration-200';
-  const selectedClasses = 'bg-blue-600 text-white';
-  const unselectedClasses = 'text-gray-300 hover:bg-gray-700 hover:text-white';
+    'flex items-center w-full h-10 px-3 rounded-lg cursor-pointer transition-colors duration-200';
+  const selectedClasses = 'bg-primary text-primary-foreground';
+  const unselectedClasses = 'text-muted-foreground hover:bg-accent hover:text-accent-foreground';
 
   return (
     <div
